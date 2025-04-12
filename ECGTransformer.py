@@ -38,9 +38,6 @@ class ECGTransformer(nn.Module):
         self.fc = nn.Linear(d_model, num_classes)
 
     def forward(self, x):
-        """
-        输入 x: (batch_size, seq_length, num_leads)
-        """
         x = self.embedding(x)  # (batch_size, seq_length, d_model)
         x = self.pos_encoding(x)  # Add Positional Encoding
         x = x.permute(1, 0, 2)  # (seq_length, batch_size, d_model)
